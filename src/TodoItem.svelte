@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Todo } from "./types";
+  import type { Todo } from "./store";
   export let todoItem: Readonly<Todo>;
   export let index: Readonly<number>;
 

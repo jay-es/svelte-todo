@@ -1,42 +1,22 @@
 <script lang="ts">
-  import type { Todo } from "./types";
+  import { todos } from "./store";
   import TodoForm from "./TodoForm.svelte";
   import TodoItem from "./TodoItem.svelte";
 
-  let todos: Todo[] = [
-    {
-      title: "task1",
-      done: true,
-    },
-    {
-      title: "task2",
-      done: false,
-    },
-    {
-      title: "task3",
-      done: false,
-    },
-  ];
-
-  const addTodo = (title: string) => {
-    const newTodo: Todo = {
-      title,
-      done: false,
-    };
-
-    todos = [...todos, newTodo];
-  };
+  // リストが空の状態を確認するため、処理を遅らせる
+  setTimeout(() => {
+    todos.add("task1");
+    todos.add("task2");
+    todos.add("task3");
+    todos.toggle(0);
+  }, 400);
 
   const handleSubmit = (e: CustomEvent<{ title: string }>) => {
-    addTodo(e.detail.title);
+    todos.add(e.detail.title);
   };
 
-  const toggle = (index: number) => {
-    todos[index].done = !todos[index].done;
-  };
-
-  $: totalCount = todos.length;
-  $: undoneCount = todos.filter((v) => !v.done).length;
+  $: totalCount = $todos.length;
+  $: undoneCount = $todos.filter((v) => !v.done).length;
 </script>
 
 <style>
@@ -62,8 +42,8 @@
   <p>{totalCount} items ({undoneCount} undone)</p>
 
   <ul>
-    {#each todos as todoItem, index}
-      <TodoItem {todoItem} {index} on:click={() => toggle(index)} />
+    {#each $todos as todoItem, index}
+      <TodoItem {todoItem} {index} on:click={() => todos.toggle(index)} />
     {:else}
       <p>No Tasks</p>
     {/each}
