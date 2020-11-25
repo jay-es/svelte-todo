@@ -19,10 +19,12 @@ const createTodos = () => {
       update((todos) => [...todos, newTodo]);
     },
     toggle(index: number) {
-      update((todos) => {
-        todos[index].done = !todos[index].done;
-        return todos;
-      });
+      update((todos) =>
+        todos.map((v, i) => ({
+          ...v,
+          done: i === index ? !v.done : v.done,
+        }))
+      );
     },
     reset: () => set([]),
   };
