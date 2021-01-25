@@ -19,6 +19,20 @@
   $: undoneCount = $todos.filter((v) => !v.done).length;
 </script>
 
+<main>
+  <h1>ToDo App</h1>
+  <TodoForm on:submit={handleSubmit} />
+  <p>{totalCount} items ({undoneCount} undone)</p>
+
+  <ul>
+    {#each $todos as todoItem, index}
+      <TodoItem {todoItem} {index} on:click={() => todos.toggle(index)} />
+    {:else}
+      <p>No Tasks</p>
+    {/each}
+  </ul>
+</main>
+
 <style>
   main {
     text-align: center;
@@ -35,17 +49,3 @@
     padding-inline-start: 0;
   }
 </style>
-
-<main>
-  <h1>ToDo App</h1>
-  <TodoForm on:submit={handleSubmit} />
-  <p>{totalCount} items ({undoneCount} undone)</p>
-
-  <ul>
-    {#each $todos as todoItem, index}
-      <TodoItem {todoItem} {index} on:click={() => todos.toggle(index)} />
-    {:else}
-      <p>No Tasks</p>
-    {/each}
-  </ul>
-</main>

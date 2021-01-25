@@ -6,6 +6,8 @@
   $: spanClass = todoItem.done ? "done" : "";
 </script>
 
+<li>{index + 1}: <span class={spanClass} on:click>{todoItem.title}</span></li>
+
 <style>
   li {
     margin: 0.4em;
@@ -19,5 +21,3 @@
     text-decoration: line-through;
   }
 </style>
-
-<li>{index + 1}: <span class={spanClass} on:click>{todoItem.title}</span></li>
