@@ -4,6 +4,7 @@ export type Todo = {
   title: string;
   done: boolean;
 };
+export type AddTodo = Pick<Todo, "title">;
 
 const createTodos = () => {
   const { subscribe, set, update } = writable<Todo[]>([]);

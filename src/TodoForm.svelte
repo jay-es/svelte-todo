@@ -1,6 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
+  import type { AddTodo } from "./store";
+
+  const dispatch = createEventDispatcher<{ submit: AddTodo }>();
   let title: string = "";
 
   const handleClick = () => {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { todos } from "./store";
+  import type { AddTodo } from "./store";
   import TodoForm from "./TodoForm.svelte";
   import TodoItem from "./TodoItem.svelte";
 
@@ -11,7 +12,7 @@
     todos.toggle(0);
   }, 400);
 
-  const handleSubmit = (e: CustomEvent<{ title: string }>) => {
+  const handleSubmit = (e: CustomEvent<AddTodo>) => {
     todos.add(e.detail.title);
   };
 
