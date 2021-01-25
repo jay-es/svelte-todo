@@ -3,10 +3,11 @@
   export let todoItem: Readonly<Todo>;
   export let index: Readonly<number>;
 
+  $: num = index + 1;
   $: spanClass = todoItem.done ? "done" : "";
 </script>
 
-<li>{index + 1}: <span class={spanClass} on:click>{todoItem.title}</span></li>
+<li>{num}: <span class={spanClass} on:click>{todoItem.title}</span></li>
 
 <style>
   li {
@@ -15,6 +16,7 @@
 
   span {
     cursor: pointer;
+    -webkit-user-select: none;
   }
 
   .done {
