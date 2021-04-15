@@ -4,10 +4,11 @@
   export let index: Readonly<number>;
 
   $: num = index + 1;
-  $: spanClass = todoItem.done ? "done" : "";
 </script>
 
-<li>{num}: <span class={spanClass} on:click>{todoItem.title}</span></li>
+<li>
+  {num}: <span class:done={todoItem.done} on:click>{todoItem.title}</span>
+</li>
 
 <style>
   li {
