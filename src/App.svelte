@@ -2,7 +2,7 @@
   import { todos } from "./store";
   import type { AddTodo } from "./store";
   import TodoForm from "./TodoForm.svelte";
-  import TodoItem from "./TodoItem.svelte";
+  import TodoList from "./TodoList.svelte";
 
   // リストが空の状態を確認するため、処理を遅らせる
   setTimeout(() => {
@@ -25,13 +25,7 @@
   <TodoForm on:submit={handleSubmit} />
   <p>{totalCount} items ({undoneCount} undone)</p>
 
-  <ul>
-    {#each $todos as todoItem, index}
-      <TodoItem {todoItem} {index} on:click={() => todos.toggle(index)} />
-    {:else}
-      <p>No Tasks</p>
-    {/each}
-  </ul>
+  <TodoList />
 </main>
 
 <style>
@@ -43,10 +37,5 @@
     color: #ff3e00;
     font-size: 4em;
     font-weight: 100;
-  }
-
-  ul {
-    list-style: none;
-    padding-inline-start: 0;
   }
 </style>

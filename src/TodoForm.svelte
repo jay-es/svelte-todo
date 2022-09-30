@@ -12,6 +12,15 @@
 </script>
 
 <div>
-  <input type="text" bind:value={title} />
+  <input type="text" bind:value={title} placeholder="input your todo" />
   <button disabled={!title} on:click={handleClick}>Add</button>
 </div>
+
+<style>
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+</style>
